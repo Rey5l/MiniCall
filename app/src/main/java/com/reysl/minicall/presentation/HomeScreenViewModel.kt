@@ -51,5 +51,14 @@ class HomeScreenViewModel(
             .onFailure {
                 Log.e("WebRTC", "PeerConnection failed")
             }
+
+        val offerResult = webRtcClient.createOffer()
+        offerResult
+            .onSuccess {
+                Log.d("WebRTC", "Offer created")
+            }
+            .onFailure {
+                Log.e("WebRTC", "Offer failed")
+            }
     }
 }
