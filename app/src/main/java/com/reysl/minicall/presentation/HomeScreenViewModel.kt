@@ -1,5 +1,6 @@
 package com.reysl.minicall.presentation
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.initializer
@@ -40,6 +41,15 @@ class HomeScreenViewModel(
                     connectionStatus = it.message.toString(),
                     isWebRtcInitialized = false
                 )
+            }
+
+        val peerConnectionResult = webRtcClient.createPeerConnection()
+        peerConnectionResult
+            .onSuccess {
+                Log.d("WebRTC", "PeerConnection created")
+            }
+            .onFailure {
+                Log.e("WebRTC", "PeerConnection failed")
             }
     }
 }
